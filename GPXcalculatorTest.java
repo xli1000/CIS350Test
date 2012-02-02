@@ -13,13 +13,13 @@ public class GPXcalculatorTest {
 	final double DELTA_DEFAULT = 1e-12;
 	
 	
-	//Error handling: GPXTrk is null
+	//GPXTrk is null
 	@Test public void testNullTrk()
 	{
 		assertEquals( -1, GPXcalculator.calculateDistanceTraveled(null), DELTA_DEFAULT );
 	}
 	
-	//Error handling: list of segments is null or list of segments contains no segments 
+	//List of segments is null or list of segments contains no segments 
 	@Test public void testNoSegs()
 	{
 		GPXtrk trk = new GPXtrk("a track", null);
@@ -30,7 +30,7 @@ public class GPXcalculatorTest {
 		assertEquals( -1, GPXcalculator.calculateDistanceTraveled(trk), DELTA_DEFAULT );
 	}
 	
-	//Boundary condition: the track contains at least one null segment.
+	//The track contains at least one null segment.
 	@Test public void testNullSegs()
 	{
 		ArrayList<GPXtrkseg >segs = new ArrayList<GPXtrkseg>();
@@ -46,7 +46,7 @@ public class GPXcalculatorTest {
 		assertEquals( 0, GPXcalculator.calculateDistanceTraveled(trk), DELTA_DEFAULT );
 	}
 	
-	//Boundary condition: segments have no points.
+	//Segments have no points.
 	@Test public void testSegNoPts()
 	{
 		ArrayList<GPXtrkseg> segs = new ArrayList<GPXtrkseg>();
@@ -61,7 +61,7 @@ public class GPXcalculatorTest {
 		assertEquals( 0, GPXcalculator.calculateDistanceTraveled(trk), DELTA_DEFAULT );
 	}
 	
-	//Boundary condition: a segment only has one point.
+	//A segment only has one point.
 	@Test public void testOnePt()
 	{
 		ArrayList<GPXtrkseg >segs = new ArrayList<GPXtrkseg>();
@@ -72,7 +72,7 @@ public class GPXcalculatorTest {
 		assertEquals( 0, GPXcalculator.calculateDistanceTraveled(trk), DELTA_DEFAULT );
 	}
 	
-	//Boundary conditions: a segment contains a null point
+	//A segment contains a null point
 	@Test public void testNullPt()
 	{
 		ArrayList<GPXtrkseg >segs = new ArrayList<GPXtrkseg>();
@@ -84,7 +84,7 @@ public class GPXcalculatorTest {
 		assertEquals( 0, GPXcalculator.calculateDistanceTraveled(trk), DELTA_DEFAULT );
 	}
 	
-	//Error handling - latitude>90 or <-90, longitude>180 or <-180
+	//Latitude>90 or <-90, longitude>180 or <-180
 	@Test public void testCoordinateBounds()
 	{
 		ArrayList<GPXtrkseg> segs = new ArrayList<GPXtrkseg>();
